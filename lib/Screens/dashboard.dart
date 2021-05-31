@@ -8,8 +8,8 @@ class DashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.3,
-      width: size.width * 0.3,
+      height: size.height * 0.5,
+      width: size.width * 0.9,
       color: Colors.white,
       child: Column(
         children: [
