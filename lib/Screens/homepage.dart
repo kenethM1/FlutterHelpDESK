@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdesk/Screens/dashboard.dart';
 import 'package:flutterdesk/Widgets/Upbar.dart';
 
 class HomePageScreen extends StatelessWidget {
@@ -6,6 +7,9 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UpBar();
+    return Scaffold(
+        body: Column(
+      children: [UpBar(), DashBoard()],
+    ));
   }
 }

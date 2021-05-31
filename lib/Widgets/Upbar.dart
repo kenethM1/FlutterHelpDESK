@@ -8,33 +8,31 @@ class UpBar extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     TextStyle titlestyle = TextStyle(color: Colors.white, fontSize: 18);
-    return Scaffold(
-      body: Container(
-        height: size.height * 0.05,
-        width: size.width,
-        color: Colors.redAccent,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
-              onPressed: () {},
+    return Container(
+      height: size.height * 0.05,
+      width: size.width,
+      color: Colors.redAccent,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            icon: Icon(
+              Icons.home,
+              color: Colors.white,
             ),
-            TextButton(
-              child: Text('Home', style: titlestyle),
-              onPressed: () {},
-            ),
-            TextButton(
-                child: Text('Tickets', style: titlestyle), onPressed: () {}),
-            TextButton(
-                child: Text('Human Resourses', style: titlestyle),
-                onPressed: () {})
-          ],
-        ),
+            onPressed: () {},
+          ),
+          TextButton(
+            child: Text('Home', style: titlestyle),
+            onPressed: () {},
+          ),
+          TextButton(
+              child: Text('Tickets', style: titlestyle), onPressed: () {}),
+          TextButton(
+              child: Text('Human Resourses', style: titlestyle),
+              onPressed: () {}),
+        ],
       ),
     );
   }
