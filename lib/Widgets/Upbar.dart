@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class UpBar extends StatelessWidget {
-  const UpBar({Key key}) : super(key: key);
+  const UpBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
