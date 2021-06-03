@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutterdesk/Providers/menuProvider.dart';
+import 'package:provider/provider.dart';
 
 class UpBar extends StatelessWidget {
   const UpBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final menuProvider = Provider.of<ProviderMenu>(context);
+
     Size size = MediaQuery.of(context).size;
+
     TextStyle titlestyle = TextStyle(color: Colors.white, fontSize: 18);
     return Container(
       height: size.height * 0.05,
@@ -21,14 +26,15 @@ class UpBar extends StatelessWidget {
               Icons.home,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () => menuProvider.opcionMenuSeleccionado = 0,
           ),
           TextButton(
             child: Text('Home', style: titlestyle),
-            onPressed: () {},
+            onPressed: () => menuProvider.opcionMenuSeleccionado = 0,
           ),
           TextButton(
-              child: Text('Tickets', style: titlestyle), onPressed: () {}),
+              child: Text('Tickets', style: titlestyle),
+              onPressed: () => menuProvider.opcionMenuSeleccionado = 1),
           TextButton(
               child: Text('Human Resourses', style: titlestyle),
               onPressed: () {}),

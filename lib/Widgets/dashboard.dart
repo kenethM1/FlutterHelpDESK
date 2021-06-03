@@ -32,6 +32,7 @@ class DashBoard extends StatelessWidget {
                     Text(
                       title!,
                       style: titulo,
+                      overflow: TextOverflow.clip,
                     ),
                   ],
                 )
@@ -47,7 +48,10 @@ class DashBoard extends StatelessWidget {
   }
 
   PieChartData sampleData1() {
-    TextStyle titulos = TextStyle(color: Colors.white, fontSize: 25);
+    TextStyle titulos = TextStyle(
+      color: Colors.white,
+      fontSize: 25,
+    );
     return PieChartData(sections: [
       PieChartSectionData(
           title: '5',
