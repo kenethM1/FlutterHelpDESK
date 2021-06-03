@@ -1,0 +1,574 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/fl_chart/src/chart/scatter_chart/scatter_chart_painter.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/borders.dart'], (function load__packages__flutterdesk__Screens__dashboard_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__rendering__flex$46dart, packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__borders$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const line_chart = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__line_chart__line_chart;
+  const line_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__line_chart__line_chart_data;
+  const axis_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__base__axis_chart__axis_chart_data;
+  const base_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__base__base_chart__base_chart_data;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  var dashboard = Object.create(dart.library);
+  var $toInt = dartx.toInt;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    LineTouchResponseL: () => (T.LineTouchResponseL = dart.constFn(dart.legacy(line_chart_data.LineTouchResponse)))(),
+    LineTouchResponseLToNull: () => (T.LineTouchResponseLToNull = dart.constFn(dart.fnType(core.Null, [T.LineTouchResponseL()])))(),
+    TextStyleL: () => (T.TextStyleL = dart.constFn(dart.legacy(text_style.TextStyle)))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    doubleLToTextStyleL: () => (T.doubleLToTextStyleL = dart.constFn(dart.fnType(T.TextStyleL(), [T.doubleL()])))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    doubleLToStringL: () => (T.doubleLToStringL = dart.constFn(dart.fnType(T.StringL(), [T.doubleL()])))(),
+    FlSpotL: () => (T.FlSpotL = dart.constFn(dart.legacy(axis_chart_data.FlSpot)))(),
+    JSArrayOfFlSpotL: () => (T.JSArrayOfFlSpotL = dart.constFn(_interceptors.JSArray$(T.FlSpotL())))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    JSArrayOfColorL: () => (T.JSArrayOfColorL = dart.constFn(_interceptors.JSArray$(T.ColorL())))(),
+    LineChartBarDataL: () => (T.LineChartBarDataL = dart.constFn(dart.legacy(line_chart_data.LineChartBarData)))(),
+    JSArrayOfLineChartBarDataL: () => (T.JSArrayOfLineChartBarDataL = dart.constFn(_interceptors.JSArray$(T.LineChartBarDataL())))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 26,
+        [_Location_line]: 23,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 23,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 19,
+        [_Location_line]: 21,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 19,
+        [_Location_line]: 22,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 20,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 19,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[9] || CT.C9], T._LocationL());
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 18,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 17,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 18,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 13,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 13,
+        [_Location_line]: 29,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15], T._LocationL());
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[11] || CT.C11,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 16,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 37,
+        [_Location_line]: 31,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 31,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 20,
+        [_Location_line]: 31,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 31,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 15,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 14,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 11,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 12,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 7,
+        [_Location_line]: 13,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 14,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.constList([C[27] || CT.C27, C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30], T._LocationL());
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[26] || CT.C26,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 10,
+        [_Location_file]: "file:///C:/Users/kenma/Desktop/Flutter/FlutterHelpDESK/flutterdesk/lib/Screens/dashboard.dart"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: ui.FontWeight.prototype,
+        [FontWeight_index]: 6
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285690267.0
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: C[32] || CT.C32,
+        [TextStyle_fontSize]: 16,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: C[33] || CT.C33,
+        [TextStyle_inherit]: true
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285887134.0
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: C[32] || CT.C32,
+        [TextStyle_fontSize]: 14,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: C[35] || CT.C35,
+        [TextStyle_inherit]: true
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.solid",
+        index: 1
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 0
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[38] || CT.C38,
+        [BorderSide_width]: 1,
+        [BorderSide_color]: C[39] || CT.C39
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283320677.0
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[38] || CT.C38,
+        [BorderSide_width]: 4,
+        [BorderSide_color]: C[41] || CT.C41
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: box_border.Border.prototype,
+        [Border_left]: C[37] || CT.C37,
+        [Border_bottom]: C[40] || CT.C40,
+        [Border_right]: C[37] || CT.C37,
+        [Border_top]: C[37] || CT.C37
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283102873.0
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289350908.0
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 11160828
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280792828.0
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46], T.ColorL());
+    }
+  }, false);
+  var C = Array(47).fill(void 0);
+  var I = ["package:flutterdesk/Screens/dashboard.dart"];
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
+  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
+  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
+  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
+  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
+  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
+  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
+  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
+  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
+  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
+  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
+  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
+  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
+  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
+  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
+  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
+  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
+  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
+  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
+  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
+  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
+  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
+  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
+  var _name = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  var Border_left = dart.privateName(box_border, "Border.left");
+  var Border_bottom = dart.privateName(box_border, "Border.bottom");
+  var Border_right = dart.privateName(box_border, "Border.right");
+  var Border_top = dart.privateName(box_border, "Border.top");
+  dashboard.DashBoard = class DashBoard extends framework.StatelessWidget {
+    build(context) {
+      let size = media_query.MediaQuery.of(context).size;
+      return new container.Container.new({height: dart.notNull(size.height) * 0.5, width: dart.notNull(size.width) * 0.9, color: colors.Colors.white, child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({color: colors.Colors.white, child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new text.Text.new("Tickets en Plataforma", {$creationLocationd_0dea112b090073317d4: C[0] || CT.C0})]), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3})]), $creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), width: dart.notNull(size.width) * 0.3, height: 40.0, $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), new basic.Expanded.new({child: new line_chart.LineChart.new(this.sampleData1(), {$creationLocationd_0dea112b090073317d4: C[16] || CT.C16}), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19})]), $creationLocationd_0dea112b090073317d4: C[22] || CT.C22}), $creationLocationd_0dea112b090073317d4: C[25] || CT.C25});
+    }
+    sampleData1() {
+      return new line_chart_data.LineChartData.new({lineTouchData: new line_chart_data.LineTouchData.new({touchTooltipData: new line_chart_data.LineTouchTooltipData.new({tooltipBgColor: colors.Colors.blueGrey.withOpacity(0.8)}), touchCallback: dart.fn(touchResponse => {
+          }, T.LineTouchResponseLToNull()), handleBuiltInTouches: true}), gridData: new axis_chart_data.FlGridData.new({show: false}), titlesData: new axis_chart_data.FlTitlesData.new({bottomTitles: new axis_chart_data.SideTitles.new({showTitles: true, reservedSize: 22.0, getTextStyles: dart.fn(value => C[31] || CT.C31, T.doubleLToTextStyleL()), margin: 10.0, getTitles: dart.fn(value => {
+              switch (value[$toInt]()) {
+                case 2:
+                {
+                  return "SEPT";
+                }
+                case 7:
+                {
+                  return "OCT";
+                }
+                case 12:
+                {
+                  return "DEC";
+                }
+              }
+              return "";
+            }, T.doubleLToStringL())}), leftTitles: new axis_chart_data.SideTitles.new({showTitles: true, getTextStyles: dart.fn(value => C[34] || CT.C34, T.doubleLToTextStyleL()), getTitles: dart.fn(value => {
+              switch (value[$toInt]()) {
+                case 1:
+                {
+                  return "1m";
+                }
+                case 2:
+                {
+                  return "2m";
+                }
+                case 3:
+                {
+                  return "3m";
+                }
+                case 4:
+                {
+                  return "5m";
+                }
+              }
+              return "";
+            }, T.doubleLToStringL()), margin: 8.0, reservedSize: 30.0})}), borderData: new base_chart_data.FlBorderData.new({show: true, border: C[36] || CT.C36}), minX: 0.0, maxX: 14.0, maxY: 4.0, minY: 0.0, lineBarsData: this.linesBarData1()});
+    }
+    linesBarData1() {
+      let lineChartBarData1 = new line_chart_data.LineChartBarData.new({spots: T.JSArrayOfFlSpotL().of([new axis_chart_data.FlSpot.new(1.0, 1.0), new axis_chart_data.FlSpot.new(3.0, 1.5), new axis_chart_data.FlSpot.new(5.0, 1.4), new axis_chart_data.FlSpot.new(7.0, 3.4), new axis_chart_data.FlSpot.new(10.0, 2.0), new axis_chart_data.FlSpot.new(12.0, 2.2), new axis_chart_data.FlSpot.new(13.0, 1.8)]), isCurved: true, colors: T.JSArrayOfColorL().of([C[42] || CT.C42]), barWidth: 8.0, isStrokeCapRound: true, dotData: new line_chart_data.FlDotData.new({show: false}), belowBarData: new line_chart_data.BarAreaData.new({show: false})});
+      let lineChartBarData2 = new line_chart_data.LineChartBarData.new({spots: T.JSArrayOfFlSpotL().of([new axis_chart_data.FlSpot.new(1.0, 1.0), new axis_chart_data.FlSpot.new(3.0, 2.8), new axis_chart_data.FlSpot.new(7.0, 1.2), new axis_chart_data.FlSpot.new(10.0, 2.8), new axis_chart_data.FlSpot.new(12.0, 2.6), new axis_chart_data.FlSpot.new(13.0, 3.9)]), isCurved: true, colors: T.JSArrayOfColorL().of([C[43] || CT.C43]), barWidth: 8.0, isStrokeCapRound: true, dotData: new line_chart_data.FlDotData.new({show: false}), belowBarData: new line_chart_data.BarAreaData.new({show: false, colors: T.JSArrayOfColorL().of([C[44] || CT.C44])})});
+      let lineChartBarData3 = new line_chart_data.LineChartBarData.new({spots: T.JSArrayOfFlSpotL().of([new axis_chart_data.FlSpot.new(1.0, 2.8), new axis_chart_data.FlSpot.new(3.0, 1.9), new axis_chart_data.FlSpot.new(6.0, 3.0), new axis_chart_data.FlSpot.new(10.0, 1.3), new axis_chart_data.FlSpot.new(13.0, 2.5)]), isCurved: true, colors: C[45] || CT.C45, barWidth: 8.0, isStrokeCapRound: true, dotData: new line_chart_data.FlDotData.new({show: false}), belowBarData: new line_chart_data.BarAreaData.new({show: false})});
+      return T.JSArrayOfLineChartBarDataL().of([lineChartBarData1, lineChartBarData2, lineChartBarData3]);
+    }
+  };
+  (dashboard.DashBoard.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    dashboard.DashBoard.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = dashboard.DashBoard.prototype;
+  dart.addTypeTests(dashboard.DashBoard);
+  dart.addTypeCaches(dashboard.DashBoard);
+  dart.setMethodSignature(dashboard.DashBoard, () => ({
+    __proto__: dart.getMethods(dashboard.DashBoard.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    sampleData1: dart.fnType(dart.legacy(line_chart_data.LineChartData), []),
+    linesBarData1: dart.fnType(dart.legacy(core.List$(dart.legacy(line_chart_data.LineChartBarData))), [])
+  }));
+  dart.setLibraryUri(dashboard.DashBoard, I[0]);
+  dart.trackLibraries("packages/flutterdesk/Screens/dashboard.dart", {
+    "package:flutterdesk/Screens/dashboard.dart": dashboard
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["dashboard.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAO4B;AACnB,iBAAkB,AAAY,0BAAT,OAAO;AACjC,YAAO,sCACe,aAAZ,AAAK,IAAD,WAAU,YACJ,aAAX,AAAK,IAAD,UAAS,YACN,4BACP,gCACK,yBACR,oCACgB,4BACP,gCACK,yBACR,sCACuC,yCAC3B,yBACR,kBAAK,gNAKK,aAAX,AAAK,IAAD,UAAS,aACZ,iEAEV,+BAAgB,6BAAU;IAIlC;;AAGE,YAAO,uDACU,yDACK,8DACO,AAAS,mCAAY,uBAE/B,QAAmB;kEACZ,kBAEd,0CACF,qBAEI,oDACI,gDACA,oBACE,qBACC,QAAC,4DAKR,iBACG,QAAC;AACV,sBAAQ,AAAM,KAAD;;;AAET,wBAAO;;;;AAEP,wBAAO;;;;AAEP,wBAAO;;;AAEX,oBAAO;oDAGC,gDACE,qBACG,QAAC,+DAKL,QAAC;AACV,sBAAQ,AAAM,KAAD;;;AAET,wBAAO;;;;AAEP,wBAAO;;;;AAEP,wBAAO;;;;AAEP,wBAAO;;;AAEX,oBAAO;8CAED,mBACM,sBAGN,4CACJ,uCAiBF,WACA,YACA,WACA,mBACQ;IAElB;;AAGQ,8BAAoB,iDACjB,yBACL,+BAAO,KAAG,MACV,+BAAO,KAAG,MACV,+BAAO,KAAG,MACV,+BAAO,KAAG,MACV,+BAAO,MAAI,MACX,+BAAO,MAAI,MACX,+BAAO,MAAI,kBAEH,cACF,qDAGE,uBACQ,eACT,yCACD,uBAEM,2CACN;AAGJ,8BAAoB,iDACjB,yBACL,+BAAO,KAAG,MACV,+BAAO,KAAG,MACV,+BAAO,KAAG,MACV,+BAAO,MAAI,MACX,+BAAO,MAAI,MACX,+BAAO,MAAI,kBAEH,cACF,qDAGE,uBACQ,eACT,yCACD,uBAEM,2CAAkB,eAAe;AAI3C,8BAAoB,iDACjB,yBACL,+BAAO,KAAG,MACV,+BAAO,KAAG,MACV,+BAAO,KAAG,MACV,+BAAO,MAAI,MACX,+BAAO,MAAI,kBAEH,yCAIA,uBACQ,eACT,yCACD,uBAEM,2CACN;AAGV,YAAO,oCACL,iBAAiB,EACjB,iBAAiB,EACjB,iBAAiB;IAErB;;;QA5LqB;;AAAQ,uDAAW,GAAG;;EAAC","file":"../../../../../../../../packages/flutterdesk/Screens/dashboard.dart.lib.js"}');
+  // Exports:
+  return {
+    Screens__dashboard: dashboard
+  };
+}));
+
+//# sourceMappingURL=dashboard.dart.lib.js.map
