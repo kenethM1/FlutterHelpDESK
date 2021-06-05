@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdesk/Screens/loginDesk.dart';
 import 'package:provider/provider.dart';
 import 'Providers/menuProvider.dart';
 import 'Screens/homepage.dart';
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         theme: ThemeData(),
         routes: {
+          'Login': (_) => LoginDesk(),
           'HomePage': (_) => HomePageScreen(),
-          'tickets': (_) => TicketScreen(),
+          'Tickets': (_) => TicketScreen(),
         },
-        initialRoute: 'tickets',
+        initialRoute: 'Login',
       ),
     );
   }
