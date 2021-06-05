@@ -29,7 +29,7 @@ class Menu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          _LoginItems(title: 'Iniciar Sesion', isActive: true),
+          _LoginItems(title: 'Iniciar La Sesion', isActive: true),
           _loginRegistrar(),
         ],
       ),
