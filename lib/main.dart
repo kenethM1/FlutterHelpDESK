@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'Providers/menuProvider.dart';
 import 'Screens/homepage.dart';
+import 'Screens/ticketsScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(),
         routes: {
           'HomePage': (_) => HomePageScreen(),
+          'tickets': (_) => TicketScreen(),
         },
-        initialRoute: 'HomePage',
+        initialRoute: 'tickets',
       ),
     );
   }
