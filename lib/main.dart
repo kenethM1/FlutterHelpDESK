@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'Providers/menuProvider.dart';
 import 'Screens/homepage.dart';
+import 'Screens/ticketsScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         routes: {
           'Login': (_) => LoginDesk(),
           'HomePage': (_) => HomePageScreen(),
+          'Tickets': (_) => TicketScreen(),
         },
         initialRoute: 'Login',
       ),
