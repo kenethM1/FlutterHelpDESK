@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdesk/Screens/loginDesk.dart';
 import 'package:provider/provider.dart';
@@ -5,7 +6,12 @@ import 'Providers/menuProvider.dart';
 import 'Screens/homepage.dart';
 import 'Screens/ticketsScreen.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(name: 'helpdesk');
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -23,7 +29,7 @@ class MyApp extends StatelessWidget {
           'HomePage': (_) => HomePageScreen(),
           'Tickets': (_) => TicketScreen(),
         },
-        initialRoute: 'Login',
+        initialRoute: 'HomePage',
       ),
     );
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
- int _value = 1;
+//int _value = 1;
+
 class TicketScreen extends StatelessWidget {
   const TicketScreen({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,6 @@ class Menu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           _newTicket(title: 'Crear un nuevo ticket', isActive: true),
-          
         ],
       ),
     );
@@ -73,21 +73,17 @@ class MyStatefulWidget extends StatefulWidget {
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String dropdownValue = 'Alta';
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      
       value: dropdownValue,
       icon: const Icon(Icons.arrow_downward),
       iconSize: 24,
       elevation: 16,
       style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-      
-      
       onChanged: (String? newValue) {
         setState(() {
           dropdownValue = newValue!;
@@ -100,16 +96,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           child: Text(value),
         );
       }).toList(),
-      
     );
   }
 }
 
 class Body extends StatelessWidget {
-
   const Body({Key? key}) : super(key: key);
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +120,6 @@ class Body extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              
               Image.asset(
                 'imagenes/ticket.png',
                 width: 360,
@@ -159,15 +150,14 @@ class Body extends StatelessWidget {
       ],
     );
   }
-  
+
   Widget _datosTicket() {
     return Column(
       children: [
         TextField(
           decoration: InputDecoration(
               hintText: 'Titulo',
-              suffixIcon:
-                  Icon(Icons.align_horizontal_left, color: Colors.grey),
+              suffixIcon: Icon(Icons.format_align_left, color: Colors.grey),
               fillColor: Colors.deepOrange.shade100,
               filled: true,
               labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
@@ -184,11 +174,10 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 30,
         ),
-
         TextField(
           decoration: InputDecoration(
             hintText: 'Descripcion',
-            suffixIcon: Icon(Icons.align_horizontal_left, color: Colors.grey),
+            suffixIcon: Icon(Icons.format_align_left_sharp, color: Colors.grey),
             fillColor: Colors.deepOrange.shade100,
             filled: true,
             labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
@@ -206,12 +195,10 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 40,
         ),
-       
         TextField(
-          
           decoration: InputDecoration(
             hintText: 'Categoria',
-            suffixIcon: Icon(Icons.align_horizontal_left, color: Colors.grey),
+            suffixIcon: Icon(Icons.format_align_left, color: Colors.grey),
             fillColor: Colors.deepOrange.shade100,
             filled: true,
             labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
@@ -229,9 +216,7 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 40,
         ),
-        
-         MyStatefulWidget(),
-
+        MyStatefulWidget(),
         SizedBox(
           height: 40,
         ),
@@ -265,9 +250,7 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        
         SizedBox(height: 40),
-        
       ],
     );
   }

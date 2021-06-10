@@ -30,9 +30,30 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+
+  <!-- Add for Cloud Firestore: https://pub.dev/packages/cloud_firestore -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
+
+    <!-- Firebase Configuration -->
+    <script>
+      const firebaseConfig = {
+  apiKey: "AIzaSyBGZ47M2BFxJgzuwIbnP_HVp2ziCfl9P9A",
+  authDomain: "helpdesk-e0725.firebaseapp.com",
+  databaseURL: "https://helpdesk-e0725-default-rtdb.firebaseio.com",
+  projectId: "helpdesk-e0725",
+  storageBucket: "helpdesk-e0725.appspot.com",
+  messagingSenderId: "882979207143",
+  appId: "1:882979207143:web:e92f129e664a379d3eaf42",
+  measurementId: "G-VXYJHJE4TK",
+  name:"HelpDesk"
+      };
+      firebase.analytics();
+      firebase.initializeApp(firebaseConfig);
+    </script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {

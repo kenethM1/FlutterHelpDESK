@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "882979207143",
+    "firebase_url": "https://helpdesk-e0725-default-rtdb.firebaseio.com",
+    "project_id": "helpdesk-e0725",
+    "storage_bucket": "helpdesk-e0725.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882979207143:android:470dfa14c788bd2a3eaf42",
+        "android_client_info": {
+          "package_name": "com.example.flutterdesk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882979207143-87bfaedifnf4eo1hohqn8h73msn59n3k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutterdesk",
+            "certificate_hash": "33d0a53fd1d6fba8572a253e4b226cd98fe8b8ea"
+          }
+        },
+        {
+          "client_id": "882979207143-4vi1258jthek35ss62glfi1ktnv2uijc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLHU42EEQkLPUr2JdpbnNNfGpUsvs8vK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882979207143-4vi1258jthek35ss62glfi1ktnv2uijc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

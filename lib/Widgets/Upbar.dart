@@ -16,7 +16,7 @@ class UpBar extends StatelessWidget {
     return Container(
       height: size.height * 0.05,
       width: size.width,
-      color: Colors.redAccent,
+      color: Colors.deepOrangeAccent,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
