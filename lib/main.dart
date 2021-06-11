@@ -8,7 +8,7 @@ import 'Screens/ticketsScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(name: 'helpdesk');
+  await Firebase.initializeApp();
 
   runApp(MyApp());
 }
