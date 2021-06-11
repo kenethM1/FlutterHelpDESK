@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => ProviderMenu(),
-        ),
+        ChangeNotifierProvider(create: (_) => ProviderMenu()),
         ChangeNotifierProvider(create: (_) => EstadoProvider()),
         ChangeNotifierProvider(create: (_) => CategoriaProvider()),
         ChangeNotifierProvider(create: (_) => PrioridadProvider())

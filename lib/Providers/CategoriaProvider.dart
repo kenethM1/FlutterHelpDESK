@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutterdesk/Models/ticket.dart';
 
 class CategoriaProvider extends ChangeNotifier {
   int _software = 0;

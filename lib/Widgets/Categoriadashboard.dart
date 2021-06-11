@@ -53,7 +53,7 @@ class CategoriaDashBoard extends StatelessWidget {
     );
     return PieChartData(sections: [
       PieChartSectionData(
-          title: ticket.software().toString(),
+          title: ticket.software.toString(),
           value: ticket.software,
           color: Colors.red,
           badgePositionPercentageOffset: 2.5,

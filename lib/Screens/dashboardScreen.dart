@@ -25,11 +25,11 @@ class DashBoardScreen extends StatelessWidget {
             EstadoDashBoard(
               title: 'Estado de Tickets',
             ),
-            CategoriaDashBoard(
-              title: 'Categoria de Estados',
-            ),
             PrioridadDashBoard(
               title: 'Prioridad de Estados',
+            ),
+            CategoriaDashBoard(
+              title: 'Categoria de Estados',
             )
           ],
         ),
