@@ -1,12 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdesk/Models/ticket.dart';
+import 'package:flutterdesk/Providers/EstadoProvider.dart';
+import 'package:provider/provider.dart';
 
-class DashBoard extends StatelessWidget {
+class EstadoDashBoard extends StatelessWidget {
   final String? title;
-  const DashBoard({
-    Key? key,
-    @required this.title,
-  }) : super(key: key);
+  const EstadoDashBoard({Key? key, @required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,21 +41,22 @@ class DashBoard extends StatelessWidget {
             width: size.width * 0.3,
             height: 60,
           ),
-          Expanded(child: PieChart(sampleData1()))
+          Expanded(child: PieChart(sampleData1(context)))
         ],
       ),
     );
   }
 
-  PieChartData sampleData1() {
+  PieChartData sampleData1(BuildContext context) {
+    final ticket = Provider.of<EstadoProvider>(context);
     TextStyle titulos = TextStyle(
       color: Colors.white,
       fontSize: 25,
     );
     return PieChartData(sections: [
       PieChartSectionData(
-          title: '5',
-          value: 5,
+          title: ticket.abiertos.toString(),
+          value: ticket.abiertos,
           color: Colors.red,
           badgePositionPercentageOffset: 2.5,
           titleStyle: titulos,
@@ -64,18 +65,18 @@ class DashBoard extends StatelessWidget {
             color: Colors.red,
           )),
       PieChartSectionData(
-          title: '7',
-          value: 7,
+          title: ticket.solucionados.toString(),
+          value: ticket.solucionados,
           color: Colors.greenAccent,
           badgePositionPercentageOffset: 2.5,
           titleStyle: titulos,
           badgeWidget: Badge(
-            titulo: 'Asignados',
+            titulo: 'Solucionados',
             color: Colors.greenAccent,
           )),
       PieChartSectionData(
-          title: '4',
-          value: 4,
+          title: ticket.asignado.toString(),
+          value: ticket.asignado,
           color: Colors.orange,
           badgePositionPercentageOffset: 2.5,
           titleStyle: titulos,
