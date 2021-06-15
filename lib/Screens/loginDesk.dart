@@ -29,7 +29,7 @@ class Menu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          loginItems(title: 'Iniciar Sesion', isActive: true),
+          _LoginItems(title: 'Iniciar La Sesion', isActive: true),
           _loginRegistrar(),
         ],
       ),
@@ -37,7 +37,7 @@ class Menu extends StatelessWidget {
   }
 }
 
-Widget loginItems({String? title, bool isActive = false}) {
+Widget _LoginItems({String? title, bool isActive = false}) {
   return Padding(
     padding: EdgeInsets.only(right: 75),
     child: Column(
@@ -130,12 +130,11 @@ class Body extends StatelessWidget {
               ),
               Image.asset(
                 'imagenes/Login-amico.png',
-                width: 500,
-                height: 500,
+                width: 360,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.height / 7),
+                    vertical: MediaQuery.of(context).size.height / 10),
               ),
             ],
           ),
