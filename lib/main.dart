@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutterdesk/Providers/EstadoProvider.dart';
+=======
+>>>>>>> 8dafcfa8605d3c723afac38b034dee2b2b65099d
 import 'package:flutterdesk/Screens/loginDesk.dart';
 import 'package:provider/provider.dart';
 import 'Providers/CategoriaProvider.dart';
@@ -35,7 +38,11 @@ class MyApp extends StatelessWidget {
           'HomePage': (_) => HomePageScreen(),
           'Tickets': (_) => TicketScreen(),
         },
+<<<<<<< HEAD
         initialRoute: 'Tickets',
+=======
+        initialRoute: 'Login',
+>>>>>>> 8dafcfa8605d3c723afac38b034dee2b2b65099d
       ),
     );
   }
