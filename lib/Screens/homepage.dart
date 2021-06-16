@@ -24,12 +24,17 @@ class HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final menuProvider = Provider.of<ProviderMenu>(context);
     final currentIndex = menuProvider.menuSeleccionado;
+    Size size = MediaQuery.of(context).size;
 
     switch (currentIndex) {
       case 0:
         return DashBoardScreen();
       case 1:
-        return TicketScreen();
+        return Container(
+          color: Colors.red,
+          width: size.width,
+          height: size.height,
+        );
       default:
         return DashBoardScreen();
     }

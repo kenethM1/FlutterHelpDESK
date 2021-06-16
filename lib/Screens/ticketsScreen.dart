@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterdesk/Models/ticket.dart';
+import 'package:flutterdesk/Providers/menuProvider.dart';
+import 'package:provider/provider.dart';
 
 String dropdownValuePrio = 'Alta';
 String dropdownValueCategoria = 'Software';
@@ -20,15 +22,22 @@ class TicketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width / 12),
-        children: [
-          Menu(),
-          Body(),
-        ],
+    Size size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      controller: new ScrollController(),
+      child: Container(
+        height: size.height - 48.5,
+        width: size.width,
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width / 12),
+          children: [
+            Menu(),
+            Body(),
+          ],
+        ),
       ),
     );
   }
@@ -100,7 +109,8 @@ class _MyStatefulWidgetStatePrioridad extends State<listaPrioridad> {
       hint: Container(
         width: 450,
       ),
-      dropdownColor: Colors.deepOrange.shade100,
+      focusColor: Colors.deepOrange,
+      dropdownColor: Colors.deepOrange,
       value: dropdownValuePrio,
       icon: const Icon(Icons.arrow_downward),
       iconSize: 24,
@@ -165,8 +175,11 @@ class Body extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Generando nuevo ticket',
-                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                '¿Necesitas ayuda? ¡Genera un nuevo ticket!',
+                style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepOrange),
               ),
               SizedBox(
                 height: 30,
@@ -289,6 +302,7 @@ class Body extends StatelessWidget {
               child: Center(child: Text('Crear Ticket')),
             ),
             onPressed: () {
+              final menuProvider = Provider.of<ProviderMenu>(context);
               final ticketmap = Ticket(
                       categoria: dropdownValueCategoria,
                       descripcion: txtdescripcion.text,
@@ -299,10 +313,10 @@ class Body extends StatelessWidget {
 
               FirebaseFirestore.instance.collection('tickets').add(ticketmap);
 
+              menuProvider.opcionMenuSeleccionado = 0;
+
               txttitulo.text = "";
               txtdescripcion.text = "";
-
-              Navigator.of(context).restorablePush(_dialogBuilder);
             },
             style: ElevatedButton.styleFrom(
               primary: Colors.deepOrange,
