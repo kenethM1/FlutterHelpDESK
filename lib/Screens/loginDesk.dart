@@ -1,19 +1,31 @@
-import 'package:flutter/material.dart';
+import 'dart:js';
 
-class LoginDesk extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutterdesk/Models/datosUsuario.dart';
+import 'package:flutterdesk/Services/auth.dart';
+
+class LoginDesk extends StatefulWidget {
   const LoginDesk({Key? key}) : super(key: key);
 
   @override
+  _LoginDeskState createState() => _LoginDeskState();
+}
+
+class _LoginDeskState extends State<LoginDesk> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
-      body: ListView(
+      backgroundColor: Color(0xff6948),
+      body: Container(
         padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width / 12),
-        children: [
-          Menu(),
-          Body(),
-        ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Menu(),
+            Body(),
+          ],
+        ),
       ),
     );
   }
@@ -29,8 +41,8 @@ class Menu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          _LoginItems(title: 'Iniciar La Sesion', isActive: true),
-          _loginRegistrar(),
+          _LoginItems(title: 'Iniciar Sesión', isActive: true),
+          _loginRegistrar(context),
         ],
       ),
     );
@@ -65,209 +77,198 @@ Widget _LoginItems({String? title, bool isActive = false}) {
   );
 }
 
-Widget _loginRegistrar() {
+Widget _loginRegistrar(BuildContext context) {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 4),
     decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-              color: Colors.grey.shade200, spreadRadius: 10, blurRadius: 12)
+              color: Colors.grey.shade200, spreadRadius: 8, blurRadius: 12)
         ]),
-    child: Text(
-      'Registarse',
-      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
+    child: TextButton(
+      onPressed: () {
+        Navigator.pushNamed(context, 'Registro');
+      },
+      child: Text(
+        'Crear Cuenta',
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
+      ),
     ),
   );
 }
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
   @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  var usuario = new Usuario();
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          width: 360,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Ingrese sus datos\n HelpDesk',
-                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Todavia no tienes una cuenta',
-                style: TextStyle(
-                    color: Colors.black54, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
+    return Container(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 360,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Tu puedes',
+                    'Ingrese sus datos\n HelpDesk',
+                    style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Todavia no tienes una cuenta',
                     style: TextStyle(
                         color: Colors.black54, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    width: 15,
+                    height: 10,
                   ),
-                  Text(
-                    'Registrate aqui',
-                    style: TextStyle(
-                        color: Colors.deepOrangeAccent,
-                        fontWeight: FontWeight.bold),
+                  Row(
+                    children: [
+                      Text(
+                        'Tu puedes',
+                        style: TextStyle(
+                            color: Colors.black54, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Registrate aqui',
+                        style: TextStyle(
+                            color: Colors.deepOrangeAccent,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Image.asset(
+                    'imagenes/Login-amico.png',
+                    width: 300,
                   ),
                 ],
               ),
-              Image.asset(
-                'imagenes/Login-amico.png',
-                width: 360,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.height / 10),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height / 6),
-          child: Container(
-            width: 300,
-            child: _loginDatos(),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _loginDatos() {
-    return Column(
-      children: [
-        TextField(
-          decoration: InputDecoration(
-              hintText: 'Ingrese su correo electronico',
-              suffixIcon:
-                  Icon(Icons.account_circle_rounded, color: Colors.grey),
-              fillColor: Colors.deepOrange.shade100,
-              filled: true,
-              labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-              contentPadding: EdgeInsets.only(left: 50),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade100),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade100),
-                borderRadius: BorderRadius.circular(20),
-              )),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Ingrese la contraseña',
-            counterText: 'Olvidaste la contraseña',
-            suffixIcon: Icon(Icons.visibility_off_outlined, color: Colors.grey),
-            fillColor: Colors.deepOrange.shade100,
-            filled: true,
-            labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-            contentPadding: EdgeInsets.only(left: 72),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade100),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade100),
-              borderRadius: BorderRadius.circular(20),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.deepOrange.shade100,
-                spreadRadius: 1,
-                blurRadius: 20,
-              )
-            ],
-          ),
-          child: ElevatedButton(
-            child: Container(
-              width: double.infinity,
-              height: 50,
-              child: Center(child: Text('Iniciar Sesión')),
-            ),
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              primary: Colors.deepOrange,
-              onPrimary: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: Divider(height: 50, color: Colors.grey.shade300),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text('Registrate con'),
-            ),
-            Expanded(
-              child: Divider(
-                height: 50,
-                color: Colors.grey.shade300,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 40),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _loginCuentasPropias(image: 'imagenes/gmail-logo-16.png'),
-            _loginCuentasPropias(image: 'imagenes/facebook-logo-20.png'),
-            _loginCuentasPropias(image: 'imagenes/twitter-logo-20.png'),
-          ],
-        ),
-      ],
-    );
-  }
+              padding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height / 6),
+              child: Container(
+                width: 300,
+                child: Column(
+                  children: [
+                    TextField(
+                      onChanged: (value) {
+                        setState(() => usuario.correo = value);
+                      },
+                      decoration: InputDecoration(
+                          hintText: 'Ingrese su correo electronico',
+                          suffixIcon: Icon(Icons.account_circle_rounded,
+                              color: Colors.grey),
+                          fillColor: Colors.deepOrange.shade100,
+                          filled: true,
+                          labelStyle: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.bold),
+                          contentPadding: EdgeInsets.only(left: 50),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey.shade100),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey.shade100),
+                            borderRadius: BorderRadius.circular(20),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    TextField(
+                      onChanged: (value) {
+                        setState(() => usuario.contrasena = value);
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'Ingrese la contraseña',
+                        counterText: 'Olvidaste la contraseña',
+                        suffixIcon: Icon(Icons.visibility_off_outlined,
+                            color: Colors.grey),
+                        fillColor: Colors.deepOrange.shade100,
+                        filled: true,
+                        labelStyle: TextStyle(
+                            fontSize: 13, fontWeight: FontWeight.bold),
+                        contentPadding: EdgeInsets.only(left: 72),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade100),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade100),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.deepOrange.shade100,
+                            spreadRadius: 1,
+                            blurRadius: 20,
+                          )
+                        ],
+                      ),
+                      child: ElevatedButton(
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          child: Center(child: Text('Iniciar Sesión')),
+                        ),
+                        onPressed: () async {
+                          final login = new UsuarioService();
+                          bool isSignIn = await login.login(context, usuario);
 
-  Widget _loginCuentasPropias({String? image}) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      width: 90,
-      height: 70,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey.shade400)),
-      child: Center(
-        child: Container(
-          child: Image.asset('$image', width: 40),
+                          if (isSignIn == false) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => Center(
+                                child: Text('No esta registrado'),
+                              ),
+                            );
+                          } else
+                            Navigator.pushNamed(context, 'Tickets');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.deepOrange,
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(height: 40),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
