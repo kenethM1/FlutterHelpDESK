@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterdesk/Models/ticket.dart';
 import 'package:flutterdesk/Providers/menuProvider.dart';
+import 'package:flutterdesk/Widgets/Upbar.dart';
 import 'package:provider/provider.dart';
 
 String dropdownValuePrio = 'Alta';
@@ -23,21 +24,27 @@ class TicketScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      controller: new ScrollController(),
-      child: Container(
-        height: size.height - 48.5,
-        width: size.width,
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width / 12),
-          children: [
-            Menu(),
-            Body(),
-          ],
-        ),
+    return Scaffold(
+      body: Column(
+        children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            controller: new ScrollController(),
+            child: Container(
+              height: size.height - 48.5,
+              width: size.width,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width / 12),
+                children: [
+                  Menu(),
+                  Body(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

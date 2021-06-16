@@ -58,7 +58,7 @@ class UsuarioService {
 
       if (value.size == 0) return false;
       return true;
-    });
+    }).onError((error, stackTrace) => false);
   }
 
   Future<List<Usuario>> get() async {

@@ -2,7 +2,9 @@ import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:flutterdesk/Models/datosUsuario.dart';
+import 'package:flutterdesk/Providers/menuProvider.dart';
 import 'package:flutterdesk/Services/auth.dart';
+import 'package:provider/provider.dart';
 
 class LoginDesk extends StatefulWidget {
   const LoginDesk({Key? key}) : super(key: key);
@@ -17,9 +19,9 @@ class _LoginDeskState extends State<LoginDesk> {
     return Scaffold(
       backgroundColor: Color(0xff6948),
       body: Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width / 12),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Menu(),
@@ -37,7 +39,7 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30),
+      padding: EdgeInsets.only(right: 100, bottom: 200, top: 50),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -85,7 +87,7 @@ Widget _loginRegistrar(BuildContext context) {
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-              color: Colors.grey.shade200, spreadRadius: 8, blurRadius: 12)
+              color: Colors.grey.shade400, spreadRadius: 5, blurRadius: 12)
         ]),
     child: TextButton(
       onPressed: () {
@@ -110,16 +112,17 @@ class _BodyState extends State<Body> {
   var usuario = new Usuario();
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProviderMenu>(context);
     return Container(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
-              width: 360,
+              width: 450,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Ingrese sus datos\n HelpDesk',
@@ -146,12 +149,15 @@ class _BodyState extends State<Body> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        'Registrate aqui',
-                        style: TextStyle(
-                            color: Colors.deepOrangeAccent,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Registrate aqui',
+                          style: TextStyle(
+                              color: Colors.deepOrangeAccent,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
                     ],
                   ),
                   Image.asset(
@@ -161,52 +167,26 @@ class _BodyState extends State<Body> {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).size.height / 6),
-              child: Container(
-                width: 300,
-                child: Column(
-                  children: [
-                    TextField(
-                      onChanged: (value) {
-                        setState(() => usuario.correo = value);
-                      },
-                      decoration: InputDecoration(
-                          hintText: 'Ingrese su correo electronico',
-                          suffixIcon: Icon(Icons.account_circle_rounded,
-                              color: Colors.grey),
-                          fillColor: Colors.deepOrange.shade100,
-                          filled: true,
-                          labelStyle: TextStyle(
-                              fontSize: 13, fontWeight: FontWeight.bold),
-                          contentPadding: EdgeInsets.only(left: 50),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade100),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade100),
-                            borderRadius: BorderRadius.circular(20),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    TextField(
-                      onChanged: (value) {
-                        setState(() => usuario.contrasena = value);
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Ingrese la contraseña',
-                        counterText: 'Olvidaste la contraseña',
-                        suffixIcon: Icon(Icons.visibility_off_outlined,
+            SizedBox(
+              width: 600,
+            ),
+            Container(
+              width: 300,
+              child: Column(
+                children: [
+                  TextField(
+                    onChanged: (value) {
+                      setState(() => usuario.correo = value);
+                    },
+                    decoration: InputDecoration(
+                        hintText: 'Ingrese su correo electronico',
+                        suffixIcon: Icon(Icons.account_circle_rounded,
                             color: Colors.grey),
                         fillColor: Colors.deepOrange.shade100,
                         filled: true,
                         labelStyle: TextStyle(
                             fontSize: 13, fontWeight: FontWeight.bold),
-                        contentPadding: EdgeInsets.only(left: 72),
+                        contentPadding: EdgeInsets.only(left: 50),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey.shade100),
                           borderRadius: BorderRadius.circular(20),
@@ -214,58 +194,129 @@ class _BodyState extends State<Body> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey.shade100),
                           borderRadius: BorderRadius.circular(20),
-                        ),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextField(
+                    obscureText: provider.isObscure,
+                    onChanged: (value) {
+                      setState(() => usuario.contrasena = value);
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Ingrese la contraseña',
+                      suffixIcon: IconButton(
+                          icon: Icon((provider.isObscure)
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility),
+                          onPressed: () =>
+                              provider.verContra = !provider.isObscure,
+                          color: Colors.grey),
+                      fillColor: Colors.deepOrange.shade100,
+                      filled: true,
+                      labelStyle:
+                          TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                      contentPadding: EdgeInsets.only(left: 72),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade100),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade100),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    SizedBox(
-                      height: 40,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.deepOrange.shade100,
+                          spreadRadius: 1,
+                          blurRadius: 20,
+                        )
+                      ],
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.deepOrange.shade100,
-                            spreadRadius: 1,
-                            blurRadius: 20,
-                          )
-                        ],
+                    child: ElevatedButton(
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        child: Center(child: Text('Iniciar Sesión')),
                       ),
-                      child: ElevatedButton(
-                        child: Container(
-                          width: double.infinity,
-                          height: 50,
-                          child: Center(child: Text('Iniciar Sesión')),
-                        ),
-                        onPressed: () async {
-                          final login = new UsuarioService();
-                          bool isSignIn = await login.login(context, usuario);
+                      onPressed: () async {
+                        final login = new UsuarioService();
+                        bool isSignIn = await login.login(context, usuario);
 
-                          if (isSignIn == false) {
-                            showDialog(
-                              context: context,
-                              builder: (context) => Center(
-                                child: Text('No esta registrado'),
+                        if (isSignIn == false) {
+                          showDialog(
+                            barrierDismissible: true,
+                            barrierColor:
+                                Colors.deepOrange.shade400.withOpacity(0.50),
+                            context: context,
+                            builder: (context) => Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 50,
+                                          color: Colors.orangeAccent.shade400,
+                                          spreadRadius: 5)
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20)),
+                                width: 500,
+                                height: 400,
+                                child: Center(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        width: 250,
+                                        height: 250,
+                                        child: Image(
+                                            filterQuality: FilterQuality.high,
+                                            image: AssetImage(
+                                                'imagenes/Forgotpassword.png')),
+                                      ),
+                                      Text(
+                                        'No está registrado',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.deepOrange,
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            );
-                          } else
-                            Navigator.pushNamed(context, 'Tickets');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.deepOrange,
-                          onPrimary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                        ),
+                            ),
+                          );
+                        } else
+                          Navigator.pushNamed(context, 'Tickets');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.deepOrange,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(height: 40),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(height: 40),
+                ],
               ),
             )
           ],
