@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdesk/Models/ticket.dart';
 import 'package:flutterdesk/Providers/menuProvider.dart';
 import 'package:flutterdesk/Screens/dashboardScreen.dart';
+import 'package:flutterdesk/Screens/ticketsScreen.dart';
+import 'package:flutterdesk/Screens/tickets.dart';
+
 import 'package:flutterdesk/Widgets/Upbar.dart';
 import 'package:provider/provider.dart';
 
@@ -29,11 +33,7 @@ class HomePageBody extends StatelessWidget {
       case 0:
         return DashBoardScreen();
       case 1:
-        return Container(
-          color: Colors.red,
-          width: size.width,
-          height: size.height,
-        );
+        return TicketList();
       default:
         return DashBoardScreen();
     }
