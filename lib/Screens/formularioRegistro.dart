@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdesk/Models/datosUsuario.dart';
-import 'package:flutterdesk/Providers/menuProvider.dart';
 import 'package:flutterdesk/Services/auth.dart';
-import 'package:provider/provider.dart';
 
 class RegistroUsuario extends StatefulWidget {
   @override
@@ -161,7 +159,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () async {
-                          String message = '';
+                          String message;
                           try {
                             await usuarioService.create(usuario);
                             setState(() {

@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutterdesk/Models/datosUsuario.dart';
 import 'package:flutterdesk/Providers/menuProvider.dart';
@@ -43,7 +41,7 @@ class Menu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          _LoginItems(title: 'Iniciar Sesión', isActive: true),
+          loginItems(title: 'Iniciar Sesión', isActive: true),
           _loginRegistrar(context),
         ],
       ),
@@ -51,7 +49,7 @@ class Menu extends StatelessWidget {
   }
 }
 
-Widget _LoginItems({String? title, bool isActive = false}) {
+Widget loginItems({String? title, bool isActive = false}) {
   return Padding(
     padding: EdgeInsets.only(right: 75),
     child: Column(
@@ -265,7 +263,7 @@ class _BodyState extends State<Body> {
                                     boxShadow: [
                                       BoxShadow(
                                           blurRadius: 50,
-                                          color: Colors.orangeAccent.shade400,
+                                          color: Colors.deepOrange,
                                           spreadRadius: 5)
                                     ],
                                     color: Colors.white,
@@ -276,8 +274,7 @@ class _BodyState extends State<Body> {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Container(
                                         width: 250,

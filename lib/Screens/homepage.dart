@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdesk/Providers/menuProvider.dart';
 import 'package:flutterdesk/Screens/dashboardScreen.dart';
-import 'package:flutterdesk/Screens/ticketsScreen.dart';
 import 'package:flutterdesk/Widgets/Upbar.dart';
 import 'package:provider/provider.dart';
 

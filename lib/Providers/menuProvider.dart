@@ -13,6 +13,7 @@ class ProviderMenu extends ChangeNotifier {
   }
 
   set verContra(bool verContrasena) {
+    // ignore: unnecessary_statements
     (verContrasena != this._isObscure) ? this._isObscure = verContrasena : null;
     notifyListeners();
   }

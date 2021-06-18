@@ -1,16 +1,13 @@
-import 'dart:html';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterdesk/Models/ticket.dart';
 import 'package:flutterdesk/Providers/menuProvider.dart';
-import 'package:flutterdesk/Widgets/Upbar.dart';
 import 'package:provider/provider.dart';
 
 String dropdownValuePrio = 'Alta';
 String dropdownValueCategoria = 'Software';
 
-Route<Object?> _dialogBuilder(BuildContext context, Object? arguments) {
+Route<Object?> dialogBuilder(BuildContext context, Object? arguments) {
   return DialogRoute<void>(
     context: context,
     builder: (BuildContext context) =>
@@ -95,21 +92,21 @@ Widget _newTicket({String? title, bool isActive = false}) {
   );
 }
 
-class listaPrioridad extends StatefulWidget {
-  const listaPrioridad({Key? key}) : super(key: key);
+class ListaPrioridad extends StatefulWidget {
+  const ListaPrioridad({Key? key}) : super(key: key);
 
   @override
-  State<listaPrioridad> createState() => _MyStatefulWidgetStatePrioridad();
+  State<ListaPrioridad> createState() => _MyStatefulWidgetStatePrioridad();
 }
 
-class listaCategoria extends StatefulWidget {
-  const listaCategoria({Key? key}) : super(key: key);
+class ListaCategoria extends StatefulWidget {
+  const ListaCategoria({Key? key}) : super(key: key);
 
   @override
-  State<listaCategoria> createState() => _MyStatefulWidgetStateCategoria();
+  State<ListaCategoria> createState() => _MyStatefulWidgetStateCategoria();
 }
 
-class _MyStatefulWidgetStatePrioridad extends State<listaPrioridad> {
+class _MyStatefulWidgetStatePrioridad extends State<ListaPrioridad> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
@@ -139,7 +136,7 @@ class _MyStatefulWidgetStatePrioridad extends State<listaPrioridad> {
   }
 }
 
-class _MyStatefulWidgetStateCategoria extends State<listaCategoria> {
+class _MyStatefulWidgetStateCategoria extends State<ListaCategoria> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
@@ -274,7 +271,7 @@ class Body extends StatelessWidget {
               labelStyle: new TextStyle(color: Colors.black),
               labelText: 'Categoria'),
         ),
-        listaCategoria(),
+        ListaCategoria(),
         SizedBox(
           height: 40,
         ),
@@ -286,7 +283,7 @@ class Body extends StatelessWidget {
               labelStyle: new TextStyle(color: Colors.black),
               labelText: 'Prioridad'),
         ),
-        listaPrioridad(),
+        ListaPrioridad(),
         SizedBox(
           height: 40,
         ),

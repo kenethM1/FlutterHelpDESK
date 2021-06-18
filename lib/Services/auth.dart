@@ -1,9 +1,7 @@
-import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterdesk/Models/datosUsuario.dart';
-import 'package:provider/provider.dart';
 
 class Authservice {
   final _auth = FirebaseAuth.instance;
