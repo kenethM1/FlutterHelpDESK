@@ -1,8 +1,5 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutterdesk/Screens/MostrarTicketAbierto.dart';
-import 'package:flutterdesk/Screens/MostrarTicketAsignado.dart';
-import 'package:flutterdesk/Screens/MostrarTicketCerrado.dart';
 
 class TicketList extends StatefulWidget {
   const TicketList({Key? key}) : super(key: key);
@@ -26,11 +23,14 @@ class _TicketListState extends State<TicketList>
             headerSliverBuilder: (context, value) {
               return [
                 SliverToBoxAdapter(
-                    child: TabBar(labelColor: Colors.black, tabs: [
-                  Tab(text: 'ABIERTOS'),
-                  Tab(text: 'CERRADOS'),
-                  Tab(text: 'ASIGNADOS'),
-                ]))
+                    child: TabBar(
+                        labelColor: Colors.black,
+                        indicatorColor: Colors.deepOrange,
+                        tabs: [
+                      Tab(text: 'ABIERTOS'),
+                      Tab(text: 'CERRADOS'),
+                      Tab(text: 'ASIGNADOS'),
+                    ]))
               ];
             },
             body: TabBarView(children: [

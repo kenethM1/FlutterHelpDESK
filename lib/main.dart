@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           'Tickets': (_) => TicketScreen(),
           'Registro': (_) => RegistroUsuario(),
         },
-        initialRoute: 'Login',
+        initialRoute: 'HomePage',
       ),
     );
   }

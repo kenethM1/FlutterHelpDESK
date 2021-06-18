@@ -2,6 +2,7 @@ import 'dart:js';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdesk/Models/ticket.dart';
 
 class NoteList extends StatelessWidget {
   final String estadoTicket;
@@ -10,31 +11,25 @@ class NoteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: StreamBuilder<QuerySnapshot>(
-          stream: db
-              .collection('tickets')
-              .where('Estado', isEqualTo: estadoTicket)
-              .snapshots(includeMetadataChanges: false),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
+      child: FutureBuilder<List<Ticket>>(
+          future: Ticket().getTickets(estadoTicket),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
               return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
-                    Map<String, dynamic> ticket = snapshot.data!.docs[index]
-                        .data() as Map<String, dynamic>;
-
-                    print(ticket);
-
                     return Card(
                         child: ListTile(
                       title: Text(
-                        ticket['Titulo'],
+                        snapshot.data![index].titulo.toString(),
                       ),
-                      subtitle: Text(ticket['Descripcion']),
+                      subtitle:
+                          Text(snapshot.data![index].descripcion.toString()),
                       trailing: IconButton(
                           icon: Icon(Icons.reorder_rounded),
                           onPressed: () async {
-                            final nombreUsuario = await getUserData(ticket);
+                            final nombreUsuario = await getUserData(
+                                snapshot.data![index].idUsuario.toString());
 
                             TextStyle titulo = TextStyle(
                                 color: Colors.deepOrange,
@@ -45,94 +40,12 @@ class NoteList extends StatelessWidget {
                               fontSize: 18,
                             );
 
-                            showDialog<String>(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (BuildContext context) => Center(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 50,
-                                          color: Colors.deepOrange,
-                                          spreadRadius: 5)
-                                    ],
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.white,
-                                  ),
-                                  height: 400,
-                                  width: 500,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        'INFORMACION DETALLADA DE TICKET',
-                                        style: titulo,
-                                      ),
-                                      Text(
-                                        'Titulo'.toUpperCase(),
-                                        style: titulo,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      Text(
-                                        ticket['Titulo'].toString(),
-                                        style: descripciones,
-                                      ),
-                                      Text(
-                                        'Descripción'.toUpperCase(),
-                                        style: titulo,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      Text(
-                                        ticket['Descripcion'],
-                                        style: descripciones,
-                                      ),
-                                      Text(
-                                        'Prioridad'.toUpperCase(),
-                                        style: titulo,
-                                      ),
-                                      Text(
-                                        ticket['Prioridad'],
-                                        style: descripciones,
-                                      ),
-                                      Text(
-                                        'Usuario'.toUpperCase(),
-                                        style: titulo,
-                                      ),
-                                      CircleAvatar(
-                                        radius: 20,
-                                        child: Icon(Icons.verified_user),
-                                      ),
-                                      Text(
-                                        nombreUsuario.toString(),
-                                        style: descripciones,
-                                      ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                context, 'Cancel'),
-                                            child: const Text('Cancelar'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () =>
-                                                Navigator.pop(context, 'OK'),
-                                            child: const Text('Asignar'),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
+                            buildShowTicketDialog(
+                                context,
+                                titulo,
+                                snapshot.data![index],
+                                descripciones,
+                                nombreUsuario);
                           }),
                     ));
                   });
@@ -145,12 +58,120 @@ class NoteList extends StatelessWidget {
     );
   }
 
-  Future<String> getUserData(Map<String, dynamic> ticket) async {
+  Future buildShowTicketDialog(BuildContext context, TextStyle titulo,
+      Ticket ticket, TextStyle descripciones, String nombreUsuario) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) => Center(
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 50, color: Colors.deepOrange, spreadRadius: 5)
+            ],
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+          ),
+          height: 400,
+          width: 500,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                'INFORMACION DETALLADA DE TICKET',
+                style: titulo,
+              ),
+              Text(
+                'Titulo'.toUpperCase(),
+                style: titulo,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                ticket.titulo.toString(),
+                style: descripciones,
+              ),
+              Text(
+                'Descripción'.toUpperCase(),
+                style: titulo,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                ticket.descripcion.toString(),
+                style: descripciones,
+              ),
+              Text(
+                'Prioridad'.toUpperCase(),
+                style: titulo,
+              ),
+              Text(
+                ticket.prioridad.toString(),
+                style: descripciones,
+              ),
+              Text(
+                'Usuario'.toUpperCase(),
+                style: titulo,
+              ),
+              CircleAvatar(
+                radius: 20,
+                child: Icon(Icons.verified_user),
+              ),
+              Text(
+                nombreUsuario.toString(),
+                style: descripciones,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: Container(
+                        width: 70,
+                        height: 25,
+                        decoration: BoxDecoration(
+                            color: Colors.deepOrange,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Center(
+                          child: Text('Cancelar',
+                              style: TextStyle(color: Colors.white)),
+                        )),
+                  ),
+                  (estadoTicket == 'Abierto')
+                      ? TextButton(
+                          onPressed: () {
+                            final ticketModel = new Ticket();
+                            ticketModel.ticketAcerrado(ticket.id.toString());
+                            Navigator.pop(context, 'OK');
+                          },
+                          child: Container(
+                              width: 70,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.deepOrange,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                child: Text('Cerrar Ticket',
+                                    style: TextStyle(color: Colors.white)),
+                              )),
+                        )
+                      : Container(),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<String> getUserData(String userID) async {
     CollectionReference usuarios =
         FirebaseFirestore.instance.collection('usuarios');
     Map<String, dynamic>? usuarioMap;
 
-    String usuarioID = ticket['IDUsuario'];
+    String usuarioID = userID;
 
     final usuario = await usuarios
         .doc(usuarioID.trim())
