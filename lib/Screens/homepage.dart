@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdesk/Models/ticket.dart';
+
 import 'package:flutterdesk/Providers/menuProvider.dart';
 import 'package:flutterdesk/Screens/dashboardScreen.dart';
-import 'package:flutterdesk/Screens/ticketsScreen.dart';
+
 import 'package:flutterdesk/Screens/tickets.dart';
 
 import 'package:flutterdesk/Widgets/Upbar.dart';

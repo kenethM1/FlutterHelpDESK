@@ -7,15 +7,16 @@ class Ticket {
   String? estado;
   String? prioridad;
   String? titulo;
+  String? idUsuario;
 
-  Ticket({
-    this.id,
-    this.categoria,
-    this.descripcion,
-    this.estado,
-    this.prioridad,
-    this.titulo,
-  });
+  Ticket(
+      {this.id,
+      this.categoria,
+      this.descripcion,
+      this.estado,
+      this.prioridad,
+      this.titulo,
+      this.idUsuario});
 
   Ticket.fromSnapshot(String idTicket, Map<String, dynamic> ticket)
       : id = idTicket,
@@ -23,14 +24,16 @@ class Ticket {
         descripcion = ticket['Descripción'],
         estado = ticket['Estado'],
         prioridad = ticket['Prioridad'],
-        titulo = ticket['Titulo'];
+        titulo = ticket['Titulo'],
+        idUsuario = ticket['IDUsuario'];
 
   Map<String, dynamic> toMap() => {
         'Categoria': categoria,
         'Descripcion': descripcion,
         'Estado': estado,
         'Prioridad': prioridad,
-        'Titulo': titulo
+        'Titulo': titulo,
+        'IDUsuario': idUsuario
       };
 
   Future<Map<String, dynamic>> getAllTickets() async {

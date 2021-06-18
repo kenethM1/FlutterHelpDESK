@@ -159,6 +159,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () async {
+                          // ignore: unused_local_variable
                           String message;
                           try {
                             await usuarioService.create(usuario);

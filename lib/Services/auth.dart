@@ -44,19 +44,24 @@ class UsuarioService {
   }
 //Retornar un map
 
-  Future<bool> login(BuildContext context, Usuario usuario) async {
+  Future<Map<String, dynamic>> login(
+      BuildContext context, Usuario usuario) async {
     final peticion = FirebaseFirestore.instance
         .collection('usuarios')
         .where('correo', isEqualTo: usuario.correo)
-        .where('contrasena', isEqualTo: usuario.contrasena);
+        .where('contrasena', isEqualTo: usuario.contrasena)
+        .limit(1);
 
     return peticion.get().then((value) {
       final Map user = value.docs.first.data();
-      print(user['tipoUsuario']);
 
-      if (value.size == 0) return false;
-      return true;
-    }).onError((error, stackTrace) => false);
+      if (value.size == 0) return {'ok': false};
+      return {
+        'ok': true,
+        'tipoUsuario': user['tipoUsuario'],
+        'id': value.docs.first.id
+      };
+    }).onError((error, stackTrace) => {'error': error.toString()});
   }
 
   Future<List<Usuario>> get() async {

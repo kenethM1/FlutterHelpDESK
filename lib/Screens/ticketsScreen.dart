@@ -306,8 +306,10 @@ class Body extends StatelessWidget {
               child: Center(child: Text('Crear Ticket')),
             ),
             onPressed: () {
-              final menuProvider = Provider.of<ProviderMenu>(context);
+              final menuProvider =
+                  Provider.of<ProviderMenu>(context, listen: false);
               final ticketmap = Ticket(
+                      idUsuario: menuProvider.userID,
                       categoria: dropdownValueCategoria,
                       descripcion: txtdescripcion.text,
                       estado: "Abierto",
@@ -317,10 +319,51 @@ class Body extends StatelessWidget {
 
               FirebaseFirestore.instance.collection('tickets').add(ticketmap);
 
-              menuProvider.opcionMenuSeleccionado = 0;
-
               txttitulo.text = "";
               txtdescripcion.text = "";
+
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 50,
+                                  color: Colors.deepOrange,
+                                  spreadRadius: 5)
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
+                        width: 500,
+                        height: 400,
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 250,
+                                height: 250,
+                                child: Image(
+                                    filterQuality: FilterQuality.high,
+                                    image: AssetImage('imagenes/Done.png')),
+                              ),
+                              Text(
+                                'Hemos activado tu ticket, pronto un agente te ayudará',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.deepOrange,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  });
             },
             style: ElevatedButton.styleFrom(
               primary: Colors.deepOrange,

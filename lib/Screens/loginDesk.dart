@@ -248,58 +248,23 @@ class _BodyState extends State<Body> {
                         child: Center(child: Text('Iniciar Sesión')),
                       ),
                       onPressed: () async {
-                        final login = new UsuarioService();
-                        bool isSignIn = await login.login(context, usuario);
+                        final menuProvider =
+                            Provider.of<ProviderMenu>(context, listen: false);
 
-                        if (isSignIn == false) {
-                          showDialog(
-                            barrierDismissible: true,
-                            barrierColor:
-                                Colors.deepOrange.shade400.withOpacity(0.50),
-                            context: context,
-                            builder: (context) => Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 50,
-                                          color: Colors.deepOrange,
-                                          spreadRadius: 5)
-                                    ],
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                                width: 500,
-                                height: 400,
-                                child: Center(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 250,
-                                        height: 250,
-                                        child: Image(
-                                            filterQuality: FilterQuality.high,
-                                            image: AssetImage(
-                                                'imagenes/Forgotpassword.png')),
-                                      ),
-                                      Text(
-                                        'No está registrado',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.deepOrange,
-                                            fontSize: 35,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        } else
+                        final login = new UsuarioService();
+                        CircularProgressIndicator();
+                        Map isSignIn = await login.login(context, usuario);
+
+                        menuProvider.setUserID = isSignIn['id'];
+
+                        if (isSignIn['ok'] == false) {
+                          buildShowDialogIfNotRegistered(context);
+                        } else if (isSignIn['tipoUsuario'] ==
+                            'Administrativo') {
+                          Navigator.pushNamed(context, 'HomePage');
+                        } else if (isSignIn['tipoUsuario'] == 'Empleado') {
                           Navigator.pushNamed(context, 'Tickets');
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.deepOrange,
@@ -317,6 +282,46 @@ class _BodyState extends State<Body> {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Future<dynamic> buildShowDialogIfNotRegistered(BuildContext context) {
+    return showDialog(
+      barrierDismissible: true,
+      barrierColor: Colors.deepOrange.shade400.withOpacity(0.50),
+      context: context,
+      builder: (context) => Center(
+        child: Container(
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(blurRadius: 50, color: Colors.deepOrange, spreadRadius: 5)
+          ], color: Colors.white, borderRadius: BorderRadius.circular(20)),
+          width: 500,
+          height: 400,
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 250,
+                  height: 250,
+                  child: Image(
+                      filterQuality: FilterQuality.high,
+                      image: AssetImage('imagenes/Forgotpassword.png')),
+                ),
+                Text(
+                  'No está registrado',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

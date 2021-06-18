@@ -6,7 +6,6 @@ import 'package:flutterdesk/Providers/PrioridadProvider.dart';
 import 'package:flutterdesk/Widgets/Categoriadashboard.dart';
 import 'package:flutterdesk/Widgets/Estadodashboard.dart';
 import 'package:flutterdesk/Widgets/PrioridadDashboard.dart';
-import 'package:flutterdesk/Widgets/TicketsList.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardScreen extends StatelessWidget {
@@ -33,7 +32,6 @@ class DashBoardScreen extends StatelessWidget {
             )
           ],
         ),
-        TicketList()
       ],
     );
   }
