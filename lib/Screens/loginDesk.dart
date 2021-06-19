@@ -41,6 +41,7 @@ class Menu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+
           loginItems(title: 'Iniciar Sesión', isActive: true),
           _loginRegistrar(context),
         ],

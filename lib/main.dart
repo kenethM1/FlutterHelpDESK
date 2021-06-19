@@ -9,6 +9,8 @@ import 'Providers/menuProvider.dart';
 import 'Screens/formularioRegistro.dart';
 import 'Screens/homepage.dart';
 import 'Screens/ticketsScreen.dart';
+import 'Screens/faqsScreen.dart';
+import 'Screens/agregarFaqs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +37,10 @@ class MyApp extends StatelessWidget {
           'Login': (_) => LoginDesk(),
           'HomePage': (_) => HomePageScreen(),
           'Tickets': (_) => TicketScreen(),
-          'Registro': (_) => RegistroUsuario(),
+          'Registro': (_) => RegistroUsuario()
+
+          'Faqs': (_) => FaqsScreen(),
+          'addfaqs': (_) => AgregarFaqs(),
         },
         initialRoute: 'HomePage',
       ),
