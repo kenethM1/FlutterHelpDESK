@@ -1,9 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutterdesk/Providers/EstadoProvider.dart';
-=======
->>>>>>> 8dafcfa8605d3c723afac38b034dee2b2b65099d
 import 'package:flutterdesk/Screens/loginDesk.dart';
 import 'package:provider/provider.dart';
 import 'Providers/CategoriaProvider.dart';
@@ -11,6 +8,8 @@ import 'Providers/PrioridadProvider.dart';
 import 'Providers/menuProvider.dart';
 import 'Screens/homepage.dart';
 import 'Screens/ticketsScreen.dart';
+import 'Screens/faqsScreen.dart';
+import 'Screens/agregarFaqs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,12 +36,12 @@ class MyApp extends StatelessWidget {
           'Login': (_) => LoginDesk(),
           'HomePage': (_) => HomePageScreen(),
           'Tickets': (_) => TicketScreen(),
+          'Faqs': (_) => FaqsScreen(),
+          'addfaqs': (_) => AgregarFaqs(),
         },
-<<<<<<< HEAD
-        initialRoute: 'Tickets',
-=======
-        initialRoute: 'Login',
->>>>>>> 8dafcfa8605d3c723afac38b034dee2b2b65099d
+ 
+        initialRoute: 'Faqs',
+
       ),
     );
   }
