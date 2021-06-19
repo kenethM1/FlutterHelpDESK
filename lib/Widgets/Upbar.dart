@@ -35,9 +35,7 @@ class UpBar extends StatelessWidget {
           TextButton(
               child: Text('Tickets', style: titlestyle),
               onPressed: () => menuProvider.opcionMenuSeleccionado = 1),
-          TextButton(
-              child: Text('Human Resourses', style: titlestyle),
-              onPressed: () {}),
+          TextButton(child: Text('FAQ', style: titlestyle), onPressed: () {}),
         ],
       ),
     );

@@ -95,6 +95,7 @@ class Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      textBaseline: TextBaseline.alphabetic,
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

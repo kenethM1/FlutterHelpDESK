@@ -1,33 +1,46 @@
-import 'dart:html';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterdesk/Models/ticket.dart';
+import 'package:flutterdesk/Providers/menuProvider.dart';
+import 'package:provider/provider.dart';
 
+String dropdownValuePrio = 'Alta';
+String dropdownValueCategoria = 'Software';
 
- 
- String dropdownValuePrio = 'Alta';
- String dropdownValueCategoria = 'Software';
- 
- Route<Object?> _dialogBuilder(BuildContext context, Object? arguments) {
+Route<Object?> dialogBuilder(BuildContext context, Object? arguments) {
   return DialogRoute<void>(
     context: context,
-    builder: (BuildContext context) => const AlertDialog(title: Text('Su ticket a sido enviado')),
+    builder: (BuildContext context) =>
+        const AlertDialog(title: Text('Su ticket a sido enviado')),
   );
-} 
+}
+
 class TicketScreen extends StatelessWidget {
   const TicketScreen({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width / 12),
+      body: Column(
         children: [
-          Menu(),
-          Body(),
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            controller: new ScrollController(),
+            child: Container(
+              height: size.height - 48.5,
+              width: size.width,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width / 12),
+                children: [
+                  Menu(),
+                  Body(),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -45,7 +58,6 @@ class Menu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           _newTicket(title: 'Crear un nuevo ticket', isActive: true),
-          
         ],
       ),
     );
@@ -80,45 +92,34 @@ Widget _newTicket({String? title, bool isActive = false}) {
   );
 }
 
-class listaPrioridad extends StatefulWidget {
-  const listaPrioridad({Key? key}) : super(key: key);
+class ListaPrioridad extends StatefulWidget {
+  const ListaPrioridad({Key? key}) : super(key: key);
 
   @override
-  State<listaPrioridad> createState() => _MyStatefulWidgetStatePrioridad();
+  State<ListaPrioridad> createState() => _MyStatefulWidgetStatePrioridad();
 }
 
-class listaCategoria extends StatefulWidget {
-  const listaCategoria({Key? key}) : super(key: key);
+class ListaCategoria extends StatefulWidget {
+  const ListaCategoria({Key? key}) : super(key: key);
 
   @override
-  State<listaCategoria> createState() => _MyStatefulWidgetStateCategoria();
-  
+  State<ListaCategoria> createState() => _MyStatefulWidgetStateCategoria();
 }
 
-
-
-class _MyStatefulWidgetStatePrioridad extends State<listaPrioridad> {
-  
-  
+class _MyStatefulWidgetStatePrioridad extends State<ListaPrioridad> {
   @override
   Widget build(BuildContext context) {
-    
     return DropdownButton<String>(
-      
       hint: Container(
         width: 450,
-        
       ),
-
-      dropdownColor: Colors.deepOrange.shade100,
-
+      focusColor: Colors.deepOrange,
+      dropdownColor: Colors.deepOrange,
       value: dropdownValuePrio,
       icon: const Icon(Icons.arrow_downward),
       iconSize: 24,
       elevation: 16,
       style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-      
-      
       onChanged: (String? newValue) {
         setState(() {
           dropdownValuePrio = newValue!;
@@ -127,69 +128,45 @@ class _MyStatefulWidgetStatePrioridad extends State<listaPrioridad> {
       items: <String>['Alta', 'Media', 'Baja']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
-          
           value: value,
           child: Text(value),
-          
         );
       }).toList(),
-      
-      
     );
-    
   }
 }
 
-class _MyStatefulWidgetStateCategoria extends State<listaCategoria> {
-  
-  
+class _MyStatefulWidgetStateCategoria extends State<ListaCategoria> {
   @override
   Widget build(BuildContext context) {
-    
     return DropdownButton<String>(
-      
       hint: Container(
         width: 450,
-        
       ),
-
       dropdownColor: Colors.deepOrange.shade100,
-      
       value: dropdownValueCategoria,
       icon: const Icon(Icons.arrow_downward),
       iconSize: 24,
       elevation: 16,
       style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-
-
       onChanged: (String? newValue) {
         setState(() {
           dropdownValueCategoria = newValue!;
         });
       },
-
       items: <String>['Software', 'Hardware', 'Red']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
-          
           value: value,
           child: Text(value),
-          
         );
       }).toList(),
-      
-      
     );
-    
-    
   }
 }
 
 class Body extends StatelessWidget {
-
   const Body({Key? key}) : super(key: key);
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -197,24 +174,24 @@ class Body extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          
           width: 700,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Generando nuevo ticket',
-                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                '¿Necesitas ayuda? ¡Genera un nuevo ticket!',
+                style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepOrange),
               ),
               SizedBox(
                 height: 30,
               ),
-              
               Image.asset(
                 'imagenes/ticket.png',
                 width: 360,
               ),
-            
               Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: MediaQuery.of(context).size.height / 15),
@@ -222,20 +199,17 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
-        
-         Padding(
-           padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.height / 10),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).size.height / 10),
           child: Container(
             width: 550,
             child: _datosTicket(context),
           ),
-         )
+        )
       ],
     );
   }
-  
-  
 
   Widget _datosTicket(BuildContext context) {
     final txttitulo = TextEditingController();
@@ -243,12 +217,11 @@ class Body extends StatelessWidget {
 
     return Column(
       children: [
-         TextField(
+        TextField(
           controller: txttitulo,
           decoration: InputDecoration(
               hintText: 'Titulo',
-              suffixIcon:
-                  Icon(Icons.align_horizontal_left, color: Colors.grey),
+              suffixIcon: Icon(Icons.format_align_left, color: Colors.grey),
               fillColor: Colors.deepOrange.shade100,
               filled: true,
               labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
@@ -265,7 +238,6 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 30,
         ),
-
         TextField(
           controller: txtdescripcion,
           keyboardType: TextInputType.multiline,
@@ -273,7 +245,7 @@ class Body extends StatelessWidget {
           maxLines: 4,
           decoration: InputDecoration(
             hintText: 'Descripcion',
-            suffixIcon: Icon(Icons.align_horizontal_left, color: Colors.grey),
+            suffixIcon: Icon(Icons.format_align_left_sharp, color: Colors.grey),
             fillColor: Colors.deepOrange.shade100,
             filled: true,
             labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
@@ -291,38 +263,30 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 40,
         ),
-        
         TextFormField(
           enabled: false,
           decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(left: 50, bottom: 30, top: 30),
-            labelStyle: new TextStyle(color: Colors.black),
-            labelText: 'Categoria'
-            
-          ),
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(left: 50, bottom: 30, top: 30),
+              labelStyle: new TextStyle(color: Colors.black),
+              labelText: 'Categoria'),
         ),
-        listaCategoria(),
-
+        ListaCategoria(),
         SizedBox(
           height: 40,
         ),
         TextFormField(
           enabled: false,
           decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(left: 50, bottom: 30, top: 30),
-            labelStyle: new TextStyle(color: Colors.black),
-            labelText: 'Prioridad'
-            
-          ),
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(left: 50, bottom: 30, top: 30),
+              labelStyle: new TextStyle(color: Colors.black),
+              labelText: 'Prioridad'),
         ),
-         listaPrioridad(),
-
+        ListaPrioridad(),
         SizedBox(
           height: 40,
         ),
-        
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -341,18 +305,65 @@ class Body extends StatelessWidget {
               height: 50,
               child: Center(child: Text('Crear Ticket')),
             ),
-            
             onPressed: () {
-              final ticketmap = Ticket(categoria: dropdownValueCategoria, descripcion: txtdescripcion.text,
-               estado: "Abierto", prioridad: dropdownValuePrio, 
-               titulo: txttitulo.text).toMap();
+              final menuProvider =
+                  Provider.of<ProviderMenu>(context, listen: false);
+              final ticketmap = Ticket(
+                      idUsuario: menuProvider.userID,
+                      categoria: dropdownValueCategoria,
+                      descripcion: txtdescripcion.text,
+                      estado: "Abierto",
+                      prioridad: dropdownValuePrio,
+                      titulo: txttitulo.text)
+                  .toMap();
 
-               FirebaseFirestore.instance.collection('tickets').add(ticketmap);
-               
-               txttitulo.text = "";
-               txtdescripcion.text = "";
-               
-              Navigator.of(context).restorablePush(_dialogBuilder);
+              FirebaseFirestore.instance.collection('tickets').add(ticketmap);
+
+              txttitulo.text = "";
+              txtdescripcion.text = "";
+
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 50,
+                                  color: Colors.deepOrange,
+                                  spreadRadius: 5)
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
+                        width: 500,
+                        height: 400,
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 250,
+                                height: 250,
+                                child: Image(
+                                    filterQuality: FilterQuality.high,
+                                    image: AssetImage('imagenes/Done.png')),
+                              ),
+                              Text(
+                                'Hemos activado tu ticket, pronto un agente te ayudará',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.deepOrange,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  });
             },
             style: ElevatedButton.styleFrom(
               primary: Colors.deepOrange,
@@ -365,12 +376,8 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        
         SizedBox(height: 40),
-        
       ],
     );
   }
-
-
 }

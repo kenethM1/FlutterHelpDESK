@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdesk/Models/ticket.dart';
+
 import 'package:flutterdesk/Providers/CategoriaProvider.dart';
 import 'package:flutterdesk/Providers/EstadoProvider.dart';
 import 'package:flutterdesk/Providers/PrioridadProvider.dart';
@@ -33,11 +32,6 @@ class DashBoardScreen extends StatelessWidget {
             )
           ],
         ),
-        Center(
-            child: ElevatedButton(
-          child: Text('Hola'),
-          onPressed: () => new Ticket().getAllTickets(),
-        ))
       ],
     );
   }

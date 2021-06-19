@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutterdesk/Providers/menuProvider.dart';
 import 'package:flutterdesk/Screens/dashboardScreen.dart';
-import 'package:flutterdesk/Screens/ticketsScreen.dart';
+
+import 'package:flutterdesk/Screens/tickets.dart';
+
 import 'package:flutterdesk/Widgets/Upbar.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +27,13 @@ class HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final menuProvider = Provider.of<ProviderMenu>(context);
     final currentIndex = menuProvider.menuSeleccionado;
+    Size size = MediaQuery.of(context).size;
 
     switch (currentIndex) {
       case 0:
         return DashBoardScreen();
       case 1:
-        return TicketScreen();
+        return TicketList();
       default:
         return DashBoardScreen();
     }

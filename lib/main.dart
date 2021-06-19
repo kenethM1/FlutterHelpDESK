@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'Providers/CategoriaProvider.dart';
 import 'Providers/PrioridadProvider.dart';
 import 'Providers/menuProvider.dart';
+import 'Screens/formularioRegistro.dart';
 import 'Screens/homepage.dart';
 import 'Screens/ticketsScreen.dart';
 import 'Screens/faqsScreen.dart';
@@ -36,12 +37,12 @@ class MyApp extends StatelessWidget {
           'Login': (_) => LoginDesk(),
           'HomePage': (_) => HomePageScreen(),
           'Tickets': (_) => TicketScreen(),
+          'Registro': (_) => RegistroUsuario()
+
           'Faqs': (_) => FaqsScreen(),
           'addfaqs': (_) => AgregarFaqs(),
         },
- 
-        initialRoute: 'Faqs',
-
+        initialRoute: 'HomePage',
       ),
     );
   }
